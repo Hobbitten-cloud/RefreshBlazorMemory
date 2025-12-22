@@ -1,0 +1,25 @@
+﻿
+
+@inject IMusicRepo MusicRepo
+<h3>DisplayMusic</h3>
+
+@if (Musics != null)
+{
+    foreach(var Music in Musics)
+    {
+        <div>
+            <p>@Music.AlbumTitle</p>
+            <p>@Music.Artist</p>
+            <p>@Music.ReleaseYear</p>
+            <p>@Music.Description</p>
+        </div>
+    }
+}
+
+@code {
+    private List<Music> Musics;
+    protected override async Task OnInitializedAsync()
+    {
+        Musics = await MusicRepo.Getall();
+    }
+}

@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using RefreshBlazorMemory.Components;
+using RefreshBlazorMemory.Data;
+using RefreshBlazorMemory.Repos;
+using RefreshBlazorMemory.Repos.IRepo;
 
 namespace RefreshBlazorMemory
 {
@@ -10,7 +14,13 @@ namespace RefreshBlazorMemory
 
             // Add services to the container.
             builder.Services.AddRazorComponents();
-
+            builder.Services.AddDbContext<DataContext>(options => 
+            { 
+                { 
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDBConnection")); 
+                } 
+            });
+            builder.Services.AddScoped<IMusicRepo, MusicRepo>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
