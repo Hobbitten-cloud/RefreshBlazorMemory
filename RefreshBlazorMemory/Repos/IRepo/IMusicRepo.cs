@@ -4,10 +4,10 @@ namespace RefreshBlazorMemory.Repos.IRepo
 {
     public interface IMusicRepo
     {
-        void AddMusic(Music music);
-        void DeleteMusic(int id);
+        Task AddMusic(Music music);
+        Task DeleteMusic(int id);
         Task<List<Music>> Getall();
-        void GetMusic(int id);
-        void UpdateMusic();
+        Task<Music> GetMusic(int id);
+        Task UpdateMusic(Music music);
     }
 }

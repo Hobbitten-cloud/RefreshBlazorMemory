@@ -1,0 +1,23 @@
+﻿@page "/MusicCreate"
+@inject IMusicRepo MusicRepo
+
+<h3>MusicCreate</h3>
+<EditForm Model="music" OnValidSubmit="createMusic">
+    <div>
+        <div>
+            <label for="Artist">Artist</label>
+        </div>
+        <div>
+            <InputText @bind-Value="music.Artist"></InputText>
+        </div>    
+    </div>
+</EditForm>
+@code {
+
+    public Music music = new Music();
+    private async Task createMusic()
+    {
+        await MusicRepo.AddMusic(music); 
+    }
+
+}
