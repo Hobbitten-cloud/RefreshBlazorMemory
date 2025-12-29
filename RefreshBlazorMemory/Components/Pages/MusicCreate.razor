@@ -1,23 +1,52 @@
 ﻿@page "/MusicCreate"
 @inject IMusicRepo MusicRepo
 
-<h3>MusicCreate</h3>
-<EditForm Model="music" OnValidSubmit="createMusic">
+<h3>Music Create</h3>
+<EditForm Model="music" FormName="Hello" OnValidSubmit="createMusic">
     <div>
         <div>
-            <label for="Artist">Artist</label>
+            <label>Artist</label>
         </div>
         <div>
             <InputText @bind-Value="music.Artist"></InputText>
-        </div>    
+        </div>
+    </div>
+    <div>
+        <div>
+            <label>Album Title</label>
+        </div>
+        <div>
+            <InputText @bind-Value="music.AlbumTitle"></InputText>
+        </div>
+    </div>
+    <div>
+        <div>
+            <label>Description</label>
+        </div>
+        <div>
+            <InputText @bind-Value="music.Description"></InputText>
+        </div>
+    </div>
+    <div>
+        <div>
+            <label>Release Year</label>
+        </div>
+        <div>
+            <InputNumber @bind-Value="music.ReleaseYear"></InputNumber>
+        </div>
+    </div>
+    <div>
+        <button type="submit">Opret Musik</button>
     </div>
 </EditForm>
-@code {
 
-    public Music music = new Music();
+@code {
+    // Only needs to have a name if multiple forms exists - otherwise use the variable instance name
+    [SupplyParameterFromForm(FormName = "Hello")]
+    public Music music { get; set; } = new Music();
+
     private async Task createMusic()
     {
         await MusicRepo.AddMusic(music); 
     }
-
 }
