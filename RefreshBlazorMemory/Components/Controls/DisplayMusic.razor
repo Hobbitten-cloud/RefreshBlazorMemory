@@ -1,8 +1,7 @@
-﻿
+﻿@inject IMusicRepo MusicRepo
 
-@inject IMusicRepo MusicRepo
 <h3>DisplayMusic</h3>
-
+<hr />
 @if (Musics != null)
 {
     foreach(var Music in Musics)
@@ -12,6 +11,7 @@
             <p>@Music.Artist</p>
             <p>@Music.ReleaseYear</p>
             <p>@Music.Description</p>
+            <hr />
         </div>
     }
 }
