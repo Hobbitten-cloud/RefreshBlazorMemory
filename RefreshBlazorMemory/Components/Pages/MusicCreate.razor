@@ -3,12 +3,19 @@
 
 <h3>Music Create</h3>
 <EditForm Model="music" FormName="Hello" OnValidSubmit="createMusic">
+
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <ValidationSummary></ValidationSummary>
+
     <div>
         <div>
             <label>Artist</label>
         </div>
         <div>
             <InputText @bind-Value="music.Artist"></InputText>
+        </div>
+        <div>
+            <ValidationMessage For=@(() => music.Artist)"></ValidationMessage>
         </div>
     </div>
     <div>
